@@ -1,16 +1,16 @@
 import React from 'react';
 
 export default function LiveStreamSection({ onBackToHome }) {
-  // Channel ID obtenido directamente de la URL de tu canal de YouTube Studio
-  const channelId = "UCGK3wNspmClgyPR6l_CNCVw";
+  // ID activo de tu transmisión en YouTube Studio
+  const liveVideoId = "a2MBWHMwdc0";
 
   return (
     <section className="w-full max-w-4xl mx-auto p-4 flex flex-col items-center">
-      {/* Botón para regresar al inicio */}
+      {/* Botón para volver al inicio */}
       <div className="w-full flex justify-start mb-4">
         <button
           onClick={onBackToHome || (() => window.location.href = '/')}
-          className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg transition-colors border border-gray-600"
+          className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg transition-colors border border-gray-600 cursor-pointer"
         >
           ← Ir a Inicio
         </button>
@@ -28,7 +28,7 @@ export default function LiveStreamSection({ onBackToHome }) {
       <div className="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-gray-800">
         <iframe
           className="w-full h-full"
-          src={`https://www.youtube.com/embed/live_stream?channel=${channelId}&autoplay=1&mute=0`}
+          src={`https://www.youtube-nocookie.com/embed/${liveVideoId}?autoplay=1&mute=0`}
           title="Transmisión en Vivo - Reality Sport Show"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
