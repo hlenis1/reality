@@ -1,13 +1,13 @@
 import React from 'react';
 
 export default function LiveStreamSection({ onBackToHome }) {
-  // ID activo de tu transmisión en vivo
+  // ID activo de tu transmisión en vivo actual
   const liveVideoId = "byxJYL6r_RE";
   const youtubeWatchUrl = `https://www.youtube.com/watch?v=${liveVideoId}`;
 
   return (
     <section className="w-full max-w-4xl mx-auto p-4 flex flex-col items-center">
-      {/* Botón para regresar al inicio */}
+      {/* Botón para volver al inicio */}
       <div className="w-full flex justify-start mb-4">
         <button
           onClick={onBackToHome || (() => window.location.href = '/')}
@@ -27,7 +27,7 @@ export default function LiveStreamSection({ onBackToHome }) {
       </div>
 
       <div className="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-gray-800 flex flex-col items-center justify-center">
-        {/* Reproductor iframe con el ID de la nueva emisión */}
+        {/* Reproductor iframe embebido */}
         <iframe
           className="w-full h-full absolute inset-0 z-0"
           src={`https://www.youtube-nocookie.com/embed/${liveVideoId}?autoplay=1&mute=0`}
@@ -37,13 +37,13 @@ export default function LiveStreamSection({ onBackToHome }) {
           allowFullScreen
         ></iframe>
 
-        {/* Botón flotante de respaldo por si YouTube restringe la inserción en móviles */}
-        <div className="absolute bottom-4 z-10 bg-black/80 backdrop-blur-md border border-red-600/50 p-3 rounded-xl text-center max-w-md shadow-2xl">
+        {/* Botón flotante de respaldo directo a YouTube */}
+        <div className="absolute bottom-4 z-10 bg-black/85 backdrop-blur-md border border-red-600/60 p-3 rounded-xl text-center max-w-md shadow-2xl">
           <a
             href={youtubeWatchUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-all transform hover:scale-105 shadow-lg text-sm"
+            className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 px-5 rounded-lg transition-all transform hover:scale-105 shadow-lg text-sm border border-red-500"
           >
             🔴 Ver Emisión en Vivo en YouTube
           </a>
