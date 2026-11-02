@@ -1,8 +1,8 @@
 import React from 'react';
 
 export default function LiveStreamSection({ onBackToHome }) {
-  // ID activo de tu transmisión en YouTube Studio
-  const liveVideoId = "a2MBWHMwdc0";
+  // ID activo de tu transmisión en vivo
+  const liveVideoId = "byxJYL6r_RE";
   const youtubeWatchUrl = `https://www.youtube.com/watch?v=${liveVideoId}`;
 
   return (
@@ -26,8 +26,8 @@ export default function LiveStreamSection({ onBackToHome }) {
         </p>
       </div>
 
-      <div className="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-gray-800 flex flex-col items-center justify-center p-6">
-        {/* Reproductor iframe con fallback visual incorporado */}
+      <div className="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-gray-800 flex flex-col items-center justify-center">
+        {/* Reproductor iframe con el ID de la nueva emisión */}
         <iframe
           className="w-full h-full absolute inset-0 z-0"
           src={`https://www.youtube-nocookie.com/embed/${liveVideoId}?autoplay=1&mute=0`}
@@ -37,16 +37,13 @@ export default function LiveStreamSection({ onBackToHome }) {
           allowFullScreen
         ></iframe>
 
-        {/* Banner flotante de acceso directo por si YouTube aplica el bloqueo de cuenta */}
-        <div className="relative z-10 mt-auto mb-4 bg-black/80 backdrop-blur-md border border-red-600/50 p-4 rounded-xl text-center max-w-md shadow-2xl">
-          <p className="text-xs text-gray-300 mb-2">
-            ¿El video aparece bloqueado por las políticas de YouTube?
-          </p>
+        {/* Botón flotante de respaldo por si YouTube restringe la inserción en móviles */}
+        <div className="absolute bottom-4 z-10 bg-black/80 backdrop-blur-md border border-red-600/50 p-3 rounded-xl text-center max-w-md shadow-2xl">
           <a
             href={youtubeWatchUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 px-5 rounded-lg transition-all transform hover:scale-105 shadow-lg"
+            className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-all transform hover:scale-105 shadow-lg text-sm"
           >
             🔴 Ver Emisión en Vivo en YouTube
           </a>
