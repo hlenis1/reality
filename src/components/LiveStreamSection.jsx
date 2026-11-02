@@ -1,54 +1,43 @@
 import React from 'react';
 
-export default function LiveStreamSection({ onBackToHome }) {
-  // ID de la transmisión de YouTube
-  const liveVideoId = "byxJYL6r_RE";
-  const youtubeWatchUrl = `https://www.youtube.com/watch?v=${liveVideoId}`;
+export const LiveStreamSection = () => {
+  // ID obtenido de tu emisión activa en YouTube
+  const videoId = "C33gbZxIPLs";
 
   return (
-    <section className="w-full max-w-4xl mx-auto p-4 flex flex-col items-center">
-      {/* Botón para volver al inicio */}
-      <div className="w-full flex justify-start mb-4">
-        <button
-          onClick={onBackToHome || (() => window.location.href = '/')}
-          className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg transition-colors border border-gray-600 cursor-pointer"
+    <section style={{ padding: '40px 20px', textAlign: 'center' }}>
+      <h2>Transmisión en Vivo ⚽</h2>
+      
+      <div style={{ width: '100%', maxWidth: '900px', margin: '0 auto' }}>
+        <div
+          style={{
+            position: 'relative',
+            paddingBottom: '56.25%', // Formato 16:9
+            height: 0,
+            overflow: 'hidden',
+            borderRadius: '12px',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)',
+            backgroundColor: '#000',
+          }}
         >
-          ← Ir a Inicio
-        </button>
-      </div>
-
-      <div className="w-full text-center mb-4">
-        <h2 className="text-3xl font-bold uppercase tracking-wide text-white">
-          Transmisión en Directo
-        </h2>
-        <p className="text-gray-300 mt-1">
-          Sigue nuestros partidos y visorías en tiempo real
-        </p>
-      </div>
-
-      {/* Contenedor del reproductor de YouTube */}
-      <div className="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-gray-800 flex flex-col items-center justify-center">
-        <iframe
-          className="w-full h-full absolute inset-0 z-0"
-          src={`https://www.youtube-nocookie.com/embed/${liveVideoId}?autoplay=1&mute=0`}
-          title="Transmisión en Vivo - Reality Sport Show"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        ></iframe>
-
-        {/* Botón flotante por si se prefiere ver directo en la App de YouTube */}
-        <div className="absolute bottom-4 z-10 bg-black/85 backdrop-blur-md border border-red-600/60 p-3 rounded-xl text-center max-w-md shadow-2xl">
-          <a
-            href={youtubeWatchUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 px-5 rounded-lg transition-all transform hover:scale-105 shadow-lg text-sm border border-red-500"
-          >
-            🔴 Ver Emisión en Vivo en YouTube
-          </a>
+          <iframe
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              border: 0,
+            }}
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&live=1`}
+            title="Transmisión en Vivo - Reality Sport Show"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default LiveStreamSection;
