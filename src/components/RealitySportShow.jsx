@@ -7,11 +7,6 @@ const TITLE_WORDS = [
   { text: "Show", accent: false },
 ];
 
-/**
- * Divide las palabras del título en letras individuales,
- * cada una envuelta en un <span> con un delay incremental
- * (--i) para animarlas en cascada tipo marcador de scoreboard.
- */
 function AnimatedTitle() {
   let globalIndex = 0;
 
@@ -41,13 +36,6 @@ function AnimatedTitle() {
   );
 }
 
-/**
- * RealitySportShow
- * Hero de marca para "Reality Sport Show".
- * Fondo naranja oscuro tipo "cancha al atardecer", tipografía
- * condensada de marcador deportivo, logo a la izquierda, título
- * animado letra por letra y dos botones de acción.
- */
 export default function RealitySportShow() {
   const rootRef = useRef(null);
 
@@ -56,6 +44,13 @@ export default function RealitySportShow() {
     if (!el) return;
     el.classList.add("rss-in");
   }, []);
+
+  const scrollToLive = () => {
+    const liveSection = document.getElementById("transmision-en-vivo");
+    if (liveSection) {
+      liveSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <div className="rss" ref={rootRef}>
@@ -86,7 +81,6 @@ export default function RealitySportShow() {
           font-family: 'Barlow Condensed', system-ui, sans-serif;
         }
 
-        /* Carriles diagonales tipo pista de atletismo, muy sutiles */
         .rss::before {
           content: "";
           position: absolute;
@@ -102,7 +96,6 @@ export default function RealitySportShow() {
           pointer-events: none;
         }
 
-        /* Marcador numerico gigante de fondo, apenas visible */
         .rss::after {
           content: "01";
           position: absolute;
@@ -232,7 +225,7 @@ export default function RealitySportShow() {
         .rss-actions {
           display: flex;
           flex-wrap: wrap;
-          justify-content: center;
+          align-items: center;
           gap: 0.9rem;
           margin-top: 0.6rem;
         }
@@ -278,6 +271,34 @@ export default function RealitySportShow() {
           box-shadow: inset 0 0 0 2px var(--ink);
         }
 
+        .rss-btn--live {
+          background: #DC2626;
+          color: #FFF;
+          box-shadow: 0 10px 24px rgba(220, 38, 38, 0.3);
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .rss-btn--live:hover {
+          transform: translateY(-2px);
+          background: #B91C1C;
+        }
+
+        .live-dot-btn {
+          width: 8px;
+          height: 8px;
+          background-color: #FFF;
+          border-radius: 50%;
+          animation: pulse-dot 1.5s infinite;
+        }
+
+        @keyframes pulse-dot {
+          0% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.4; transform: scale(1.3); }
+          100% { opacity: 1; transform: scale(1); }
+        }
+
         @media (prefers-reduced-motion: reduce) {
           .rss-content,
           .rss-letter,
@@ -314,6 +335,9 @@ export default function RealitySportShow() {
             </button>
             <button type="button" className="rss-btn rss-btn--ghost">
               Quiénes somos
+            </button>
+            <button type="button" className="rss-btn rss-btn--live" onClick={scrollToLive}>
+              <span className="live-dot-btn"></span> Transmisión en vivo
             </button>
           </div>
         </div>
