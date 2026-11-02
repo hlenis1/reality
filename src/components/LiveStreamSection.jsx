@@ -28,7 +28,7 @@ export default function LiveStreamSection({ onBackToHome }) {
       <div className="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-gray-800">
         <iframe
           className="w-full h-full"
-          src={`https://www.youtube-nocookie.com/embed/${liveVideoId}?autoplay=1&mute=0`}
+          src={`https://www.youtube.com/embed/${liveVideoId}?origin=https://realitysportshow.stylepc.lat&autoplay=1&mute=0`}
           title="Transmisión en Vivo - Reality Sport Show"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
