@@ -1,12 +1,12 @@
 import React from 'react';
 
 export default function LiveStreamSection({ onBackToHome }) {
-  // ID obtenido de tu transmisión activa en YouTube Studio
-  const liveVideoId = "a2MBWHMwdc0";
+  // Channel ID obtenido directamente de la URL de tu canal de YouTube Studio
+  const channelId = "UCGK3wNspmClgyPR6l_CNCVw";
 
   return (
     <section className="w-full max-w-4xl mx-auto p-4 flex flex-col items-center">
-      {/* Botón para volver al inicio */}
+      {/* Botón para regresar al inicio */}
       <div className="w-full flex justify-start mb-4">
         <button
           onClick={onBackToHome || (() => window.location.href = '/')}
@@ -28,7 +28,7 @@ export default function LiveStreamSection({ onBackToHome }) {
       <div className="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-gray-800">
         <iframe
           className="w-full h-full"
-          src={`https://www.youtube.com/embed/${liveVideoId}?autoplay=1&mute=0&rel=0`}
+          src={`https://www.youtube.com/embed/live_stream?channel=${channelId}&autoplay=1&mute=0`}
           title="Transmisión en Vivo - Reality Sport Show"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
