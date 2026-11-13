@@ -36,7 +36,7 @@ function AnimatedTitle() {
   );
 }
 
-export default function RealitySportShow() {
+export default function RealitySportShow({ onNavigate, onWatchLive }) {
   const rootRef = useRef(null);
 
   useEffect(() => {
@@ -46,10 +46,15 @@ export default function RealitySportShow() {
   }, []);
 
   const scrollToLive = () => {
-    const liveSection = document.getElementById("transmision-en-vivo");
-    if (liveSection) {
-      liveSection.scrollIntoView({ behavior: "smooth" });
+    if (onWatchLive) {
+      onWatchLive();
     }
+    setTimeout(() => {
+      const liveSection = document.getElementById("transmision-en-vivo");
+      if (liveSection) {
+        liveSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
   };
 
   return (
@@ -244,11 +249,6 @@ export default function RealitySportShow() {
           transition: transform 0.18s ease, filter 0.18s ease, box-shadow 0.18s ease;
         }
 
-        .rss-btn:focus-visible {
-          outline: 3px solid var(--ink);
-          outline-offset: 3px;
-        }
-
         .rss-btn--primary {
           background: var(--accent);
           color: var(--dark);
@@ -298,23 +298,6 @@ export default function RealitySportShow() {
           50% { opacity: 0.4; transform: scale(1.3); }
           100% { opacity: 1; transform: scale(1); }
         }
-
-        @media (prefers-reduced-motion: reduce) {
-          .rss-content,
-          .rss-letter,
-          .rss-btn {
-            animation: none !important;
-            transition: none !important;
-          }
-          .rss-in .rss-content {
-            opacity: 1;
-            transform: none;
-          }
-          .rss-letter {
-            opacity: 1;
-            transform: none;
-          }
-        }
       `}</style>
 
       <div className="rss-content">
@@ -330,8 +313,12 @@ export default function RealitySportShow() {
             El camino a una estrella del futbol.
           </p>
           <div className="rss-actions">
-            <button type="button" className="rss-btn rss-btn--primary">
-              Regístrate
+            <button 
+              type="button" 
+              className="rss-btn rss-btn--primary"
+              onClick={() => onNavigate && onNavigate('auth')}
+            >
+              Regístrate / Iniciar Sesión
             </button>
             <button type="button" className="rss-btn rss-btn--ghost">
               Quiénes somos
